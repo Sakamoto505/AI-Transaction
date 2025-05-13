@@ -115,3 +115,18 @@ spec/examples.txt
 .idea/
 *.iml
 .vscode/
+
+# Логи и временные файлы
+
+storage/*
+!storage/.keep
+
+
+# Локальные конфиги
+.rubocop.yml
+*.ruby-version.*
+
+# Docker и деплой (если не основной фокус)
+.dockerignore
+Dockerfile
+.kamal/
