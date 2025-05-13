@@ -1,9 +1,11 @@
 <h1>💸 Мои траты</h1>
 
 <div style="margin-bottom: 1rem;">
-  <%= form_with url: transactions_path, method: :post, data: { turbo: true }, class: "expense-form" do %>
-    <%= text_field_tag :input_text, @input_text, placeholder: "Например: Купил молоко за 120 руб", class: "input" %>
-    <%= submit_tag "➕ Добавить", class: "button" %>
+  <%= form_with url: transactions_path, method: :post, data: { turbo: true, controller: "voice-input" }, class: "expense-form" do %>
+    <%= text_field_tag :input_text, @input_text, placeholder: "Например: Купил молоко за 120 руб", class: "input", data: { voice_input_target: "input" } %>
+    <button type="button" data-voice-input-target="startButton" data-action="voice-input#startRecording" class="button">🎤 Начать</button>
+    <button type="button" data-voice-input-target="stopButton" data-action="voice-input#endRecording" class="button hidden">⏹ Остановить</button>
+    <button type="button" data-voice-input-target="breakButton" data-action="voice-input#breakRecording" class="button hidden">❌ Отменить</button>
   <% end %>
 </div>
 

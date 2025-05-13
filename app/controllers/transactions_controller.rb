@@ -27,12 +27,12 @@ class TransactionsController < ApplicationController
 
   # POST /transactions or /transactions.json
   def create
-    parsed = TransactionParser.call(text: params[:input_text])
+    parsed = TransactionParser.call(text: params[:input_text] || "")
 
     @transaction = Transaction.new(
-      description: params[:input_text],
-      amount: parsed["amount"],
-      category: parsed["category"]
+      description: params[:input_text] || "",
+      amount: parsed["amount"] || 0,
+      category: parsed["category"] || "Другое"
     )
 
     if @transaction.save
@@ -42,7 +42,8 @@ class TransactionsController < ApplicationController
         format.html { redirect_to transactions_path, notice: "Сохранено" }
       end
     else
-      render :index, alert: "Ошибка сохранения"
+      @transactions = Transaction.order(created_at: :desc)
+      render :index, status: :unprocessable_entity, alert: "Ошибка сохранения"
     end
   end
 

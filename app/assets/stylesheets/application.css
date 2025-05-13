@@ -1,3 +1,19 @@
+.hidden {
+    display: none;
+}
+.button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.button:hover {
+    background: #45a049;
+}
+
 .expense-form {
     display: flex;
     gap: 0.5rem;
