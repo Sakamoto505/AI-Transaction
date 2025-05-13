@@ -1,0 +1,38 @@
+<h1>📊 Расходы по категориям</h1>
+
+<%= turbo_frame_tag "grouped_transactions" do %>
+  <table class="category-table">
+    <thead>
+    <tr>
+      <th>Категория</th>
+      <th>Описание</th>
+      <th>Сумма</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% total_sum = 0 %>
+    <% @grouped.each do |category, transactions| %>
+      <% subtotal = transactions.sum(&:amount) %>
+      <% total_sum += subtotal %>
+
+      <tr class="category-header">
+        <td colspan="3"><strong><%= category %></strong> — <%= number_to_currency(subtotal, unit: "₽") %></td>
+      </tr>
+
+      <% transactions.each do |t| %>
+        <tr class="transaction-row">
+          <td></td>
+          <td><%= t.description %></td>
+          <td><%= number_to_currency(t.amount, unit: "₽") %></td>
+        </tr>
+      <% end %>
+    <% end %>
+
+    <tr class="total-row">
+      <td colspan="2"><strong>Итого:</strong></td>
+      <td><strong><%= number_to_currency(total_sum, unit: "₽") %></strong></td>
+    </tr>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "Вернуться", root_path %>

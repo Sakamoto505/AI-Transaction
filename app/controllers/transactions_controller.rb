@@ -3,7 +3,8 @@ class TransactionsController < ApplicationController
 
   # GET /transactions or /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.order(created_at: :desc)
+    @input_text = ""
   end
 
   # GET /transactions/1 or /transactions/1.json
@@ -19,20 +20,32 @@ class TransactionsController < ApplicationController
   def edit
   end
 
+  def report
+    @grouped = Transaction.order(created_at: :desc).group_by(&:category)
+  end
+
+
   # POST /transactions or /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    parsed = TransactionParser.call(text: params[:input_text])
 
-    respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction, notice: "Transaction was successfully created." }
-        format.json { render :show, status: :created, location: @transaction }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+    @transaction = Transaction.new(
+      description: params[:input_text],
+      amount: parsed["amount"],
+      category: parsed["category"]
+    )
+
+    if @transaction.save
+      @transactions = Transaction.order(created_at: :desc)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to transactions_path, notice: "Сохранено" }
       end
+    else
+      render :index, alert: "Ошибка сохранения"
     end
   end
+
 
   # PATCH/PUT /transactions/1 or /transactions/1.json
   def update

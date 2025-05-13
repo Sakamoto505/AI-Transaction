@@ -1,16 +1,30 @@
-<p style="color: green"><%= notice %></p>
+<h1>💸 Мои траты</h1>
 
-<% content_for :title, "Transactions" %>
-
-<h1>Transactions</h1>
-
-<div id="transactions">
-  <% @transactions.each do |transaction| %>
-    <%= render transaction %>
-    <p>
-      <%= link_to "Show this transaction", transaction %>
-    </p>
+<div style="margin-bottom: 1rem;">
+  <%= form_with url: transactions_path, method: :post, data: { turbo: true }, class: "expense-form" do %>
+    <%= text_field_tag :input_text, @input_text, placeholder: "Например: Купил молоко за 120 руб", class: "input" %>
+    <%= submit_tag "➕ Добавить", class: "button" %>
   <% end %>
 </div>
 
-<%= link_to "New transaction", new_transaction_path %>
+<%= turbo_frame_tag "transactions_table" do %>
+  <table class="expense-table">
+    <thead>
+    <tr>
+      <th>Описание</th>
+      <th>Сумма</th>
+      <th>Категория</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @transactions.each do |t| %>
+      <tr>
+        <td><%= t.description %></td>
+        <td><%= number_to_currency(t.amount, unit: "₽") %></td>
+        <td><%= t.category %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "📂 Мои траты по категориям", report_transactions_path %>

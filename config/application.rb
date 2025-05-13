@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module ExpenseTracker
   class Application < Rails::Application
+
+    config.autoload_paths << Rails.root.join("app/services")
+    config.eager_load_paths << Rails.root.join("app/services")
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 

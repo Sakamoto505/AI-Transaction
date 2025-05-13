@@ -49,6 +49,11 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  # Gemfile
+  gem 'ruby_llm'
+  gem "onnxruntime"
+  gem "tokenizers"
+  gem "ollama-ai"
 end
 
 group :development do

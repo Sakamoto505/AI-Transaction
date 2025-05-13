@@ -1,10 +1,61 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+.expense-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.expense-table th,
+.expense-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.expense-table th {
+    background: #f5f5f5;
+}
+
+.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.category-table th,
+.category-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+.category-header {
+    background-color: #f0f0f0;
+}
+
+.transaction-row td {
+    background: #fff;
+}
+
+.total-row {
+    background-color: #e0ffe0;
+    font-weight: bold;
+}
+

@@ -1,0 +1,5 @@
+<turbo-stream target="transactions_table" action="replace">
+  <template>
+    <%= render partial: "transactions/table", formats: :html, locals: { transactions: @transactions } %>
+  </template>
+</turbo-stream>
