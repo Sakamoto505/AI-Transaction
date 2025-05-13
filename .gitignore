@@ -73,3 +73,45 @@ npm-debug.log*
 .kamal/*
 !.kamal/deploy.yml
 !.kamal/.keep
+# Логи
+log/*
+!log/.keep
+
+# Временные файлы
+tmp/*
+!tmp/.keep
+
+# Кэш и сессии
+tmp/cache/*
+tmp/pids/*
+tmp/sockets/*
+
+# Файлы базы данных
+db/*.sqlite3
+db/*.sqlite3-*
+
+# Конфиги с секретами
+config/master.key
+config/credentials.yml.enc
+config/database.yml
+
+# Сгенерированные файлы
+public/assets/*
+public/packs/*
+node_modules/
+yarn-error.log
+
+# Локальные файлы разработчика
+.env
+.DS_Store
+*.swp
+*.swo
+
+# Тестовые файлы
+coverage/*
+spec/examples.txt
+
+# Редакторы
+.idea/
+*.iml
+.vscode/
