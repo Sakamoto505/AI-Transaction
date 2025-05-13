@@ -1,24 +1,3 @@
-# README
+ExpenseTracker — это приложение на Ruby 3.2.2 и Rails 8.0.2 для отслеживания расходов с интеграцией Ollama (модель mistral на http://localhost:11434); установи зависимости (bundle install, добавь gem "ollama-ai"), настрой базу (rails db:create db:migrate), запусти Ollama (ollama serve), сервер (rails server), и добавляй траты на http://localhost:3000
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ExpenseTracker is a Ruby 3.2.2 and Rails 8.0.2 application for tracking expenses with Ollama integration (Mistral model at http://localhost:11434); install dependencies (bundle install, add gem "ollama-ai"), set up the database (rails db:create db:migrate), run Ollama (ollama serve), start the server (rails server), and add expenses at http://localhost:3000
